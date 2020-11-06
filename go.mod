@@ -1,4 +1,4 @@
-module github.com/rudoi/pizza-go
+module github.com/grantgumina/pizza-go
 
 go 1.12
 

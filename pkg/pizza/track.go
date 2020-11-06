@@ -2,6 +2,7 @@ package pizza
 
 import (
 	"encoding/json"
+	"errors"
 	"net/http"
 )
 
@@ -73,7 +74,12 @@ func (c *Client) GetTrackingUrl(phone string) (string, error) {
 		return "", err
 	}
 
-	return (*trackInfos)[0].Actions.Track, nil
+	if len(*trackInfos) != 0 {
+		return (*trackInfos)[0].Actions.Track, nil
+	} else {
+		return "", errors.New("No tracking URL available")
+	}
+
 }
 
 func (c *Client) Track(path string) (*TrackerStatus, error) {
